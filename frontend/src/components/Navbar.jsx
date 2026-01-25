@@ -1,12 +1,22 @@
+import { Link } from "react-router-dom";
+
 export default function Navbar() {
   return (
     <nav style={styles.nav}>
-      <div style={styles.logo}>EduVillage</div>
+      <Link to="/" style={styles.logo}>
+        EduVillage
+      </Link>
 
       <div style={styles.links}>
-        <a style={styles.link} href="/">Home</a>
-        <a style={styles.link} href="/login">Login</a>
-        <a style={styles.link} href="/dashboard">Dashboard</a>
+        <Link style={styles.link} to="/">
+          Home
+        </Link>
+        <Link style={styles.link} to="/login">
+          Login
+        </Link>
+        <Link style={styles.link} to="/dashboard">
+          Dashboard
+        </Link>
       </div>
     </nav>
   );
@@ -18,8 +28,8 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     padding: "14px 20px",
-    borderBottom: "1px solid #223",
-    backgroundColor: "#111a2e",
+    borderBottom: "1px solid #e5e7eb",
+    backgroundColor: "#ffffff",
     position: "sticky",
     top: 0,
     zIndex: 10,
@@ -27,7 +37,8 @@ const styles = {
   logo: {
     fontSize: "20px",
     fontWeight: "700",
-    color: "#e6e6e6",
+    color: "#111111",
+    textDecoration: "none",
   },
   links: {
     display: "flex",
@@ -35,7 +46,7 @@ const styles = {
   },
   link: {
     textDecoration: "none",
-    color: "#e6e6e6",
+    color: "#333",
     fontWeight: "500",
   },
 };

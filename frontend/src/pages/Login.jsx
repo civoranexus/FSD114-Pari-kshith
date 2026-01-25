@@ -1,47 +1,32 @@
-import Navbar from "../components/Navbar";
+import Layout from "../components/Layout";
 
 export default function Login() {
   return (
-    <div>
-      <Navbar />
+    <Layout>
+      <h2 style={{ marginBottom: "16px" }}>Login</h2>
 
-      <div style={styles.container}>
-        <h2 style={styles.title}>Login</h2>
+      <form style={styles.form}>
+        <label style={styles.label}>Email</label>
+        <input style={styles.input} type="email" placeholder="Enter email" />
 
-        <form style={styles.form}>
-          <label style={styles.label}>Email</label>
-          <input style={styles.input} type="email" placeholder="Enter email" />
+        <label style={styles.label}>Password</label>
+        <input style={styles.input} type="password" placeholder="Enter password" />
 
-          <label style={styles.label}>Password</label>
-          <input
-            style={styles.input}
-            type="password"
-            placeholder="Enter password"
-          />
+        <button style={styles.button} type="button">
+          Login
+        </button>
+      </form>
 
-          <button style={styles.button} type="button">
-            Login
-          </button>
-        </form>
-
-        <p style={styles.note}>
-          (Backend login will be connected later ✅)
-        </p>
-      </div>
-    </div>
+      <p style={styles.note}>
+        (Backend login will be connected later ✅)
+      </p>
+    </Layout>
   );
 }
 
 const styles = {
-  container: {
-    maxWidth: "450px",
-    margin: "0 auto",
-    padding: "30px 18px",
-  },
-  title: {
-    marginBottom: "16px",
-  },
   form: {
+    maxWidth: "450px",
     display: "flex",
     flexDirection: "column",
     gap: "10px",
