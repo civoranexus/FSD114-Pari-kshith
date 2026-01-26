@@ -24,9 +24,42 @@ Today I worked on the EduVillage frontend setup and initial UI structure.
 - Home UI is responsive and clean for initial stage
 
 ---
+# ✅ Today Documentation (EduVillage – FSD114) — Day 3
+
+## 📌 Today Work Summary
+Today I worked on improving the EduVillage frontend by adding authentication UI pages and creating separate dashboards for different user roles.
+
+---
+
+## ✅ Day 3: Authentication UI (Frontend)
+### ✅ Implemented:
+- Created **Register Page UI**
+  - Inputs: Name, Email, Password
+  - Role selection: Student / Teacher / Admin (UI only)
+- Improved **Login Page UI**
+  - Email + Password fields
+  - Basic form handling (UI only)
+- Added routing for Register page:
+  - `/register`
+- Updated Navbar with Register link
+
+### ✅ Created separate dashboard pages:
+- **Student Dashboard**
+  - Planned area for enrolled courses and progress tracking
+- **Teacher Dashboard**
+  - Planned area for course management and grading workflow
+- **Admin Dashboard**
+  - Planned area for user/course management and reports
+
+### ✅ Added routes for dashboards:
+- `/student` → Student Dashboard
+- `/teacher` → Teacher Dashboard
+- `/admin` → Admin Dashboard
+
+---
 
 ## ✅ Commands Used
 ```bash
 cd frontend
-npm install
 npm run dev
+
