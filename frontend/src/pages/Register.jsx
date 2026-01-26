@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
 
-export default function Login() {
+export default function Register() {
   const [form, setForm] = useState({
+    name: "",
     email: "",
     password: "",
+    role: "student",
   });
 
   function handleChange(e) {
@@ -13,14 +15,26 @@ export default function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    alert(`Login (UI only)\nEmail: ${form.email}`);
+    alert(
+      `Registered (UI only)\nName: ${form.name}\nEmail: ${form.email}\nRole: ${form.role}`
+    );
   }
 
   return (
     <Layout>
-      <h2 style={{ marginBottom: "14px" }}>Login</h2>
+      <h2 style={{ marginBottom: "14px" }}>Create Account</h2>
 
       <form onSubmit={handleSubmit} style={styles.form}>
+        <label style={styles.label}>Full Name</label>
+        <input
+          style={styles.input}
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="Enter your name"
+          required
+        />
+
         <label style={styles.label}>Email</label>
         <input
           style={styles.input}
@@ -39,15 +53,29 @@ export default function Login() {
           name="password"
           value={form.password}
           onChange={handleChange}
-          placeholder="Enter your password"
+          placeholder="Create a password"
           required
         />
 
+        <label style={styles.label}>Select Role</label>
+        <select
+          style={styles.input}
+          name="role"
+          value={form.role}
+          onChange={handleChange}
+        >
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="admin">Admin</option>
+        </select>
+
         <button style={styles.button} type="submit">
-          Login
+          Register
         </button>
 
-        <p style={styles.note}>(Backend login will be connected later ✅)</p>
+        <p style={styles.note}>
+          (Backend registration will be connected later ✅)
+        </p>
       </form>
     </Layout>
   );
@@ -55,7 +83,7 @@ export default function Login() {
 
 const styles = {
   form: {
-    maxWidth: "450px",
+    maxWidth: "480px",
     display: "flex",
     flexDirection: "column",
     gap: "10px",

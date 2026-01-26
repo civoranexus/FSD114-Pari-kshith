@@ -1,30 +1,37 @@
+import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 
 export default function Dashboard() {
   return (
     <Layout>
-      <h2 style={{ marginBottom: "8px" }}>Student Dashboard</h2>
-      <p style={{ marginBottom: "20px", color: "#555" }}>
-        Demo dashboard UI (progress will be dynamic later).
+      <h2>Main Dashboard</h2>
+      <p style={{ color: "#555" }}>
+        Select dashboard based on role (demo navigation).
       </p>
 
-      <div style={styles.box}>
-        <h3 style={{ marginTop: 0 }}>My Courses</h3>
-        <ul>
-          <li>Web Development Basics — 30% ✅</li>
-          <li>JavaScript Fundamentals — 60% ✅</li>
-          <li>Database Introduction — 10% ✅</li>
-        </ul>
+      <div style={styles.links}>
+        <Link style={styles.btn} to="/student">Go to Student</Link>
+        <Link style={styles.btn} to="/teacher">Go to Teacher</Link>
+        <Link style={styles.btn} to="/admin">Go to Admin</Link>
       </div>
     </Layout>
   );
 }
 
 const styles = {
-  box: {
-    padding: "16px",
-    border: "1px solid #ddd",
+  links: {
+    display: "flex",
+    gap: "12px",
+    marginTop: "16px",
+    flexWrap: "wrap",
+  },
+  btn: {
+    textDecoration: "none",
+    padding: "10px 14px",
     borderRadius: "10px",
-    backgroundColor: "#fff",
+    border: "1px solid #111",
+    backgroundColor: "#111",
+    color: "#fff",
+    fontWeight: "700",
   },
 };

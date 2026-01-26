@@ -14,6 +14,10 @@ export default function Navbar() {
         <Link style={styles.link} to="/login">
           Login
         </Link>
+        <Link style={styles.link} to="/register">
+  Register
+</Link>
+
         <Link style={styles.link} to="/dashboard">
           Dashboard
         </Link>
