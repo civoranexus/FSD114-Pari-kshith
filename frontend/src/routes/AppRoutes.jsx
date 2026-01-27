@@ -3,10 +3,12 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
-
 import StudentDashboard from "../pages/student/StudentDashboard";
 import TeacherDashboard from "../pages/teacher/TeacherDashboard";
 import AdminDashboard from "../pages/admin/AdminDashboard";
+import Courses from "../pages/Courses";
+import CourseDetails from "../pages/CourseDetails";
+import LessonViewer from "../pages/LessonViewer";
 
 export default function AppRoutes() {
   return (
@@ -27,6 +29,10 @@ export default function AppRoutes() {
         path="*"
         element={<h2 style={{ padding: 20 }}>Page Not Found ❌</h2>}
       />
+      <Route path="/courses" element={<Courses />} />
+      <Route path="/courses/:id" element={<CourseDetails />} />
+      <Route path="/lessons" element={<LessonViewer />} />
+
     </Routes>
   );
 }

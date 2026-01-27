@@ -17,6 +17,7 @@ export default function Navbar() {
         <Link style={styles.link} to="/register">
   Register
 </Link>
+<Link style={styles.link} to="/courses">Courses</Link>
 
         <Link style={styles.link} to="/dashboard">
           Dashboard
