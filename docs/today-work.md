@@ -57,9 +57,41 @@ Today I worked on improving the EduVillage frontend by adding authentication UI 
 - `/admin` → Admin Dashboard
 
 ---
+# ✅ Today Documentation (EduVillage – FSD114) — Day 4
 
+## 📌 Today Work Summary
+Today I focused on building course-related pages for the EduVillage platform.
+
+### ✅ Day 4: Courses List & Course Details (Frontend)
+- Created **Courses List Page**
+  - Displays all available courses using dummy data
+  - Each course shows title, description, and category
+- Created **Course Details Page**
+  - Displays detailed information of a selected course
+  - Added route parameter support using course ID
+- Implemented routing for:
+  - `/courses` → Courses list
+  - `/courses/:id` → Course details page
+- Added navigation to Courses page via Navbar
+
+### Lesson Viewer & Progress Tracking UI
+- Created **Lesson Viewer Page**
+  - Displays list of lessons for a course
+  - Shows completed and pending lessons
+- Implemented **Progress Indicator**
+  - Calculates course progress percentage (UI only)
+  - Displays progress bar for better user experience
+- Added routing for lesson viewer:
+  - `/lessons`
+
+### Setup Backend
+-Created folder backend
+  - Intialize backend
+  - installing cors
 ## ✅ Commands Used
 ```bash
 cd frontend
 npm run dev
-
+cd backend
+npm init -y 
+npm install express cors dotenv
