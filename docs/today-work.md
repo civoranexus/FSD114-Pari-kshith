@@ -88,6 +88,34 @@ Today I focused on building course-related pages for the EduVillage platform.
 -Created folder backend
   - Intialize backend
   - installing cors
+
+# ✅ Day 5 Documentation – Backend Core (EduVillage – FSD114)
+
+## 📌 Work Summary (Day 5)
+Today I worked on setting up the backend for the EduVillage project. This includes backend initialization, database connection, and user registration functionality with secure password handling.
+
+---
+
+## ✅ Backend Technology Stack
+- **Node.js** – Runtime environment
+- **Express.js** – Backend framework
+- **PostgreSQL** – Relational database
+- **pg** – PostgreSQL client for Node.js
+- **bcrypt** – Password hashing
+- **dotenv** – Environment variable management
+- **cors** – Enable frontend-backend communication
+
+---
+
+## ✅ Installations Performed (Backend)
+
+Inside the `backend/` folder, the following packages were installed:
+
+```bash
+npm install express cors dotenv
+npm install pg bcrypt
+
+
 ## ✅ Commands Used
 ```bash
 cd frontend
