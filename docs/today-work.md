@@ -115,7 +115,84 @@ Inside the `backend/` folder, the following packages were installed:
 npm install express cors dotenv
 npm install pg bcrypt
 
+# ✅ Day 6 Documentation – Authentication & Authorization (EduVillage – FSD114)
 
+## 📌 Work Summary (Day 6)
+Today I implemented the complete authentication and authorization flow for the EduVillage platform. This includes secure login using JWT, role-based access control for different users, frontend-backend integration for authentication, and input validation improvements.
+
+## ✅ Technology Stack Used
+### Backend
+- Node.js
+- Express.js
+- PostgreSQL
+- pg (PostgreSQL client)
+- bcrypt (password hashing)
+- jsonwebtoken (JWT authentication)
+- dotenv
+- cors
+
+### Frontend
+- React.js (Vite)
+- React Router
+- Fetch API
+- Local Storage (JWT storage)
+##Login API & JWT Authentication
+- Implemented login API endpoint:
+POST /api/auth/login
+- Validated user credentials against database
+- Used bcrypt to compare hashed passwords
+- Generated JWT token on successful login
+- Included user role inside JWT payload
+- Implemented protected routes using authentication middleware
+- Tested login and protected routes using Thunder Client
+
+---
+##Role-Based Access Control (RBAC)
+- Created custom middleware for role validation
+- Restricted API access based on user roles:
+- Student
+- Teacher
+- Admin
+- Implemented role-specific protected routes:
+/api/student
+/api/teacher
+/api/admin
+
+- Ensured unauthorized roles are blocked with proper error responses
+- Successfully tested role-based access using JWT tokens
+
+##Frontend ↔ Backend Authentication Integration
+- Connected React Register page to backend Register API
+- Connected React Login page to backend Login API
+- Stored JWT token and user role securely in browser localStorage
+- Accessed protected backend APIs from frontend using Authorization headers
+- Displayed success and error messages in UI based on API response
+- Verified complete authentication flow:
+UI → API → Database → JWT → Protected Route
+
+---
+
+## ✅ Input Validation Enhancements
+- Added email format validation on frontend to block invalid email inputs
+- Added backend validation to prevent invalid email formats from being stored
+- Ensured incorrect login credentials are properly rejected
+- Improved overall security and data integrity
+
+---
+
+## ✅ Testing & Verification
+- Authentication APIs tested using Thunder Client
+- Role-based routes tested with different user roles
+- Frontend tested by registering and logging in users
+- Verified JWT token storage and protected API access
+- Confirmed database entries using pgAdmin
+
+---
+
+## ✅ Result
+The authentication system for EduVillage is fully functional, secure, and role-aware. Users can register, login, receive JWT tokens, and access only authorized resources based on their role. The frontend and backend are now fully integrated for authentication workflows.
+
+---
 ## ✅ Commands Used
 ```bash
 cd frontend
