@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
+import { protect } from "./middleware/authMiddleware.js";
+import { allowRoles } from "./middleware/roleMiddleware.js";
 
 const app = express();
 const PORT = 5000;
@@ -16,6 +18,51 @@ app.get("/", (req, res) => {
     message: "EduVillage backend is running 🚀",
   });
 });
+
+app.get("/api/protected", protect, (req, res) => {
+  res.json({
+    message: "Protected route accessed ✅",
+    user: req.user,
+  });
+});
+// Student-only route
+app.get(
+  "/api/student",
+  protect,
+  allowRoles("student"),
+  (req, res) => {
+    res.json({
+      message: "Welcome Student 🎓",
+      user: req.user,
+    });
+  }
+);
+
+// Teacher-only route
+app.get(
+  "/api/teacher",
+  protect,
+  allowRoles("teacher"),
+  (req, res) => {
+    res.json({
+      message: "Welcome Teacher 👩‍🏫",
+      user: req.user,
+    });
+  }
+);
+
+// Admin-only route
+app.get(
+  "/api/admin",
+  protect,
+  allowRoles("admin"),
+  (req, res) => {
+    res.json({
+      message: "Welcome Admin 🛠️",
+      user: req.user,
+    });
+  }
+);
 
 // Start server
 app.listen(PORT, () => {

@@ -1,92 +1,43 @@
 import { useState } from "react";
 import Layout from "../components/Layout";
+import { loginUser } from "../services/authService";
 
 export default function Login() {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [msg, setMsg] = useState("");
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    alert(`Login (UI only)\nEmail: ${form.email}`);
+  async function handleSubmit(e) {
+  e.preventDefault();
+  setMsg("");
+
+  const res = await loginUser(form);
+
+  if (res.error) {
+    setMsg(res.error);   // ❌ show error
+    return;
   }
+
+  // ✅ Only store token if success
+  localStorage.setItem("token", res.token);
+  localStorage.setItem("role", res.user.role);
+
+  setMsg("Login successful ✅");
+}
+
 
   return (
     <Layout>
-      <h2 style={{ marginBottom: "14px" }}>Login</h2>
-
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <label style={styles.label}>Email</label>
-        <input
-          style={styles.input}
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          placeholder="Enter your email"
-          required
-        />
-
-        <label style={styles.label}>Password</label>
-        <input
-          style={styles.input}
-          type="password"
-          name="password"
-          value={form.password}
-          onChange={handleChange}
-          placeholder="Enter your password"
-          required
-        />
-
-        <button style={styles.button} type="submit">
-          Login
-        </button>
-
-        <p style={styles.note}>(Backend login will be connected later ✅)</p>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <input name="email" placeholder="Email" onChange={handleChange} />
+        <input name="password" type="password" placeholder="Password" onChange={handleChange} />
+        <button type="submit">Login</button>
       </form>
+      {msg && <p>{msg}</p>}
     </Layout>
   );
 }
-
-const styles = {
-  form: {
-    maxWidth: "450px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-    padding: "16px",
-    border: "1px solid #ddd",
-    borderRadius: "12px",
-    backgroundColor: "#fff",
-  },
-  label: {
-    fontWeight: "600",
-    fontSize: "14px",
-  },
-  input: {
-    padding: "10px 12px",
-    borderRadius: "10px",
-    border: "1px solid #ccc",
-    outline: "none",
-  },
-  button: {
-    padding: "10px",
-    borderRadius: "10px",
-    border: "none",
-    backgroundColor: "#111",
-    color: "#fff",
-    fontWeight: "700",
-    cursor: "pointer",
-    marginTop: "8px",
-  },
-  note: {
-    marginTop: "10px",
-    fontSize: "14px",
-    color: "#666",
-  },
-};

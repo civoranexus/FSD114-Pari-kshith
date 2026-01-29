@@ -1,37 +1,25 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import { getProtected } from "../services/authService";
 
 export default function Dashboard() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    getProtected(token).then(setData);
+  }, []);
+
   return (
     <Layout>
-      <h2>Main Dashboard</h2>
-      <p style={{ color: "#555" }}>
-        Select dashboard based on role (demo navigation).
-      </p>
-
-      <div style={styles.links}>
-        <Link style={styles.btn} to="/student">Go to Student</Link>
-        <Link style={styles.btn} to="/teacher">Go to Teacher</Link>
-        <Link style={styles.btn} to="/admin">Go to Admin</Link>
-      </div>
+      <h2>Dashboard</h2>
+      {data ? (
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      ) : (
+        <p>Login to see protected data</p>
+      )}
     </Layout>
   );
 }
-
-const styles = {
-  links: {
-    display: "flex",
-    gap: "12px",
-    marginTop: "16px",
-    flexWrap: "wrap",
-  },
-  btn: {
-    textDecoration: "none",
-    padding: "10px 14px",
-    borderRadius: "10px",
-    border: "1px solid #111",
-    backgroundColor: "#111",
-    color: "#fff",
-    fontWeight: "700",
-  },
-};
