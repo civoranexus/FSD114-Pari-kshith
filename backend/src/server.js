@@ -3,6 +3,8 @@ import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import { protect } from "./middleware/authMiddleware.js";
 import { allowRoles } from "./middleware/roleMiddleware.js";
+import courseRoutes from "./routes/courseRoutes.js";
+import enrollmentRoutes from "./routes/enrollmentRoutes.js";
 
 const app = express();
 const PORT = 5000;
@@ -11,6 +13,8 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
+app.use("/api/courses", courseRoutes);
+app.use("/api/enroll", enrollmentRoutes);
 
 // Test route
 app.get("/", (req, res) => {

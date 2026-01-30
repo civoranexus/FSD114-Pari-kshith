@@ -1,31 +1,23 @@
+import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
+import { myEnrollments } from "../../services/enrollService";
 
 export default function StudentDashboard() {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    myEnrollments(localStorage.getItem("token")).then(setCourses);
+  }, []);
+
   return (
     <Layout>
-      <h2>Student Dashboard</h2>
-      <p style={{ color: "#555" }}>
-        Enrolled courses, progress, quizzes and assignments will appear here.
-      </p>
-
-      <div style={styles.box}>
-        <h3 style={{ marginTop: 0 }}>My Progress</h3>
-        <ul>
-          <li>JavaScript Fundamentals — 60%</li>
-          <li>React for Beginners — 25%</li>
-          <li>PostgreSQL Starter — 10%</li>
-        </ul>
-      </div>
+      <h2>My Courses</h2>
+      {courses.map((c) => (
+        <div key={c.id}>
+          <strong>{c.title}</strong>
+          <p>Progress: {c.progress_percent}%</p>
+        </div>
+      ))}
     </Layout>
   );
 }
-
-const styles = {
-  box: {
-    marginTop: "14px",
-    padding: "16px",
-    border: "1px solid #ddd",
-    borderRadius: "12px",
-    backgroundColor: "#fff",
-  },
-};
