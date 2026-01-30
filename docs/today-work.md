@@ -193,6 +193,104 @@ UI → API → Database → JWT → Protected Route
 The authentication system for EduVillage is fully functional, secure, and role-aware. Users can register, login, receive JWT tokens, and access only authorized resources based on their role. The frontend and backend are now fully integrated for authentication workflows.
 
 ---
+# ✅ Day 6 Documentation – Courses, Enrollment & Progress (EduVillage – FSD114)
+
+## 📌 Work Summary (Day 6)
+Today I implemented the core learning workflow for the EduVillage platform. This includes course management, student enrollment, and progress tracking. The backend APIs and frontend UI were integrated to allow students to view courses, enroll, and track their learning progress.
+
+---
+
+## ✅ Database Design (New Tables)
+
+### 📘 Courses Table
+- Stores course details created by teachers or admins
+- Fields include:
+  - title
+  - description
+  - category
+  - created_by
+  - created_at
+
+### 📗 Enrollments Table
+- Tracks which students are enrolled in which courses
+- Prevents duplicate enrollments per student
+
+### 📊 Progress Table
+- Tracks course completion percentage for each student
+- Progress is updated dynamically
+
+---
+
+## Courses Module
+### Implemented Features
+- Backend API to **create courses** (Teacher/Admin only)
+- Backend API to **list all courses** (Public access)
+- Integrated PostgreSQL `courses` table
+- Frontend Courses page to:
+  - Display list of available courses
+  - Show course title, description, category, and instructor
+- Proper role-based access control applied for course creation
+
+---
+
+## Student Enrollment & Progress Tracking
+### Implemented Features
+- Student-only enrollment API
+- Backend API to:
+  - Enroll student into a course
+  - Fetch enrolled courses for a student
+  - Track and update course progress
+- PostgreSQL tables for enrollments and progress tracking
+- Frontend functionality to:
+  - Enroll students from Courses page
+  - Display enrolled courses and progress in Student Dashboard
+- Duplicate enrollment prevention and validation
+
+---
+
+## ✅ UI Design Guidelines Followed
+
+### 🎨 Colors
+- Clean and neutral background colors for content areas
+- Accent colors used for action buttons (Enroll)
+- Green indicators for success messages
+- Red indicators for errors and access issues
+
+### 🔤 Fonts & Layout
+- Default system fonts for readability
+- Clear spacing between course cards
+- Card-based layout for course listing
+- Consistent padding and alignment across pages
+
+---
+
+## ✅ Testing & Verification
+- Backend APIs tested using Thunder Client
+- Role-based access verified for:
+  - Student
+  - Teacher
+  - Admin
+- Courses API tested after database schema creation
+- Enrollment and progress verified using pgAdmin
+- Frontend tested for:
+  - Course listing
+  - Enrollment flow
+  - Progress display
+- Error handling verified for unauthorized access
+
+---
+
+## ✅ Result
+The EduVillage platform now supports a complete course lifecycle where teachers create courses, students enroll, and learning progress is tracked. This establishes the core functionality required for an online learning platform and aligns with the FSD114 project requirements.
+
+---
+
+## 🔜 Next Steps
+- Lesson and content management
+- Course detail and lesson viewer pages
+- Quizzes and assessments
+- Certificate generation on completion
+
 ## ✅ Commands Used
 ```bash
 cd frontend
