@@ -31,6 +31,7 @@ export default function AppRoutes() {
 
       {/* Lessons */}
       <Route path="/lessons" element={<LessonViewer />} />
+      <Route path="/lessons/:id" element={<LessonViewer />} />
 
       {/* ❗ MUST BE LAST */}
       <Route

@@ -193,9 +193,9 @@ UI → API → Database → JWT → Protected Route
 The authentication system for EduVillage is fully functional, secure, and role-aware. Users can register, login, receive JWT tokens, and access only authorized resources based on their role. The frontend and backend are now fully integrated for authentication workflows.
 
 ---
-# ✅ Day 6 Documentation – Courses, Enrollment & Progress (EduVillage – FSD114)
+# ✅ Day 7 Documentation – Courses, Enrollment & Progress (EduVillage – FSD114)
 
-## 📌 Work Summary (Day 6)
+## 📌 Work Summary (Day 7)
 Today I implemented the core learning workflow for the EduVillage platform. This includes course management, student enrollment, and progress tracking. The backend APIs and frontend UI were integrated to allow students to view courses, enroll, and track their learning progress.
 
 ---
@@ -290,6 +290,104 @@ The EduVillage platform now supports a complete course lifecycle where teachers 
 - Course detail and lesson viewer pages
 - Quizzes and assessments
 - Certificate generation on completion
+
+# ✅ Day 8 Documentation – Lessons & Completion Tracking (EduVillage – FSD114)
+
+## 📌 Work Summary (Day 8)
+Today I implemented the lesson management and lesson completion tracking features for the EduVillage platform. These features allow teachers to add lessons to courses and students to view lessons and mark them as completed. This strengthens the core learning workflow of the platform.
+---
+## ✅ Database Design (New Tables)
+
+### 📘 Lessons Table
+Stores lessons linked to courses.
+
+Fields:
+- id  
+- course_id (foreign key)  
+- title (required)  
+- content  
+- video_url  
+- created_at  
+
+---
+
+### 📗 Lesson Completion Table
+Tracks which lessons a student has completed.
+
+Fields:
+- id  
+- user_id  
+- lesson_id  
+- completed (boolean)  
+- unique constraint per user & lesson  
+
+---
+
+##Lessons Module
+
+### Implemented Features
+- API to add lessons (Teacher/Admin only)  
+- API to fetch lessons by course  
+- Lessons linked to courses via foreign key  
+- Lesson viewer frontend page  
+- Video link support inside lessons  
+- Proper role-based access control  
+
+---
+
+## Lesson Completion Tracking
+
+### Implemented Features
+- API to mark lessons as completed  
+- Stores completion per student  
+- Prevents duplicate completion records  
+- Frontend "Mark Complete" button  
+- Success message after completion  
+- Requires authentication token  
+
+---
+
+## ✅ UI Design Guidelines Followed
+
+### 🎨 Colors
+- Clean background for lesson content  
+- Accent buttons for actions  
+- Green messages for successful completion  
+- Red messages for errors  
+
+---
+
+### 🔤 Fonts & Layout
+- Default readable fonts  
+- Clear spacing between lessons  
+- Simple and distraction-free layout  
+- Consistent padding and alignment  
+
+---
+
+## ✅ Testing & Verification
+- APIs tested using Thunder Client  
+- Role-based restrictions verified  
+- Lessons retrieved using course IDs  
+- Completion records verified in pgAdmin  
+- Frontend tested for:
+  - Lesson viewing  
+  - Video links  
+  - Completion marking  
+- Error handling validated  
+
+---
+
+## ✅ Result
+The EduVillage platform now supports lesson-based learning where teachers can add content and students can track lesson completion. This creates a structured and trackable learning experience aligned with e-learning platform requirements.
+
+---
+
+## 🔜 Next Steps
+- Quiz and assessment system  
+- Course completion percentage  
+- Certificate generation  
+- Teacher lesson upload UI
 
 ## ✅ Commands Used
 ```bash
