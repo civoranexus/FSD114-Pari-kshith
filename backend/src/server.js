@@ -6,7 +6,7 @@ import { allowRoles } from "./middleware/roleMiddleware.js";
 import courseRoutes from "./routes/courseRoutes.js";
 import enrollmentRoutes from "./routes/enrollmentRoutes.js";
 import lessonRoutes from "./routes/lessonRoutes.js";
-
+import quizRoutes from "./routes/quizRoutes.js";
 const app = express();
 const PORT = 5000;
 
@@ -17,6 +17,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/enroll", enrollmentRoutes);
 app.use("/api/lessons", lessonRoutes);
+app.use("/api/quiz", quizRoutes);
+
 // Test route
 app.get("/", (req, res) => {
   res.json({
