@@ -389,6 +389,79 @@ The EduVillage platform now supports lesson-based learning where teachers can ad
 - Certificate generation  
 - Teacher lesson upload UI
 
+# Today Documentation (EduVillage – FSD114) — Day 9
+
+## Today Work Summary
+Today I implemented the complete quiz evaluation workflow in the EduVillage platform, including quiz answer submission, automatic scoring, storing quiz attempts, and building a quiz results dashboard for students.
+
+---
+
+## Quiz Submission & Scoring System
+
+### Features Implemented
+- Created Quiz Submission API endpoint
+- Accepted student quiz answers from frontend
+- Compared submitted answers with correct answers in database
+- Implemented automatic score calculation
+- Stored quiz attempt records in database
+- Protected submission API using JWT authentication
+- Connected frontend quiz page with submission API
+- Displayed score immediately after quiz submission
+
+### Database Integration
+- Used `quiz_attempts` table to store:
+  - user_id
+  - quiz_id
+  - score
+  - total marks
+  - submitted_at timestamp
+- Ensured each quiz submission is saved for history tracking
+
+### Testing & Verification
+- Submission API tested using Thunder Client
+- Score calculation verified with multiple attempts
+- Database entries verified in pgAdmin
+- Frontend submission flow tested end-to-end
+
+---
+
+## Quiz Results Dashboard
+
+### Features Implemented
+- Created Quiz Results API endpoint
+- Fetches quiz attempt history for logged-in student
+- Joined quiz_attempts with quizzes table
+- Sorted results by latest submission first
+- Built Quiz Results dashboard page in React
+- Displayed results in table format
+- Calculated percentage score in frontend
+- Protected results route using JWT
+
+### Results Dashboard Displays
+- Quiz title
+- Score obtained
+- Total marks
+- Percentage
+- Submission date and time
+
+### Frontend Integration
+- Created Quiz Results page component
+- Integrated results API using Axios
+- Passed JWT token in Authorization header
+- Added route for quiz results page
+- Restricted access to authenticated users only
+
+### Testing & Verification
+- Results API tested using Thunder Client
+- SQL join and sorting verified
+- Quiz history validated with database records
+- Dashboard UI tested with real quiz data
+
+---
+
+## Result
+The EduVillage platform now supports full quiz workflow — students can submit quizzes, receive evaluated scores, and view their complete quiz performance history through a dedicated results dashboard. Frontend, backend, and database quiz features are fully integrated.
+
 ## ✅ Commands Used
 ```bash
 cd frontend
