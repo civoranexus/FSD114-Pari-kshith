@@ -9,6 +9,9 @@ import AdminDashboard from "../admin/AdminDashboard";
 import Courses from "../Courses";
 import CourseDetails from "../CourseDetails";
 import LessonViewer from "../LessonViewer";
+import CreateQuiz from "../teacher/CreateQuiz";
+import QuizResults from "../student/QuizResults";
+import Quiz from "../Quiz";
 
 export default function AppRoutes() {
   return (
@@ -32,6 +35,10 @@ export default function AppRoutes() {
       {/* Lessons */}
       <Route path="/lessons" element={<LessonViewer />} />
       <Route path="/lessons/:id" element={<LessonViewer />} />
+
+      <Route path="/teacher/quiz" element={<CreateQuiz />} />
+      <Route path="/student/results" element={<QuizResults />} />
+      <Route path="/quiz/:id" element={<Quiz />} />
 
       {/* ❗ MUST BE LAST */}
       <Route

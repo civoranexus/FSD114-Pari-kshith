@@ -1,4 +1,5 @@
 import Layout from "../../components/Layout";
+import { Link } from "react-router-dom";
 
 export default function TeacherDashboard() {
   return (
@@ -9,21 +10,24 @@ export default function TeacherDashboard() {
       </p>
 
       <div style={styles.grid}>
-        <div style={styles.card}>
-          <h3>Create Course</h3>
-          <p>Add new course content for students.</p>
-        </div>
+      <div style={styles.card}>
+      <h3>Create Course</h3>
+    <p>Add new course content for students.</p>
+  </div>
 
-        <div style={styles.card}>
-          <h3>Create Quiz</h3>
-          <p>Auto-graded quizzes for lessons.</p>
-        </div>
+  <Link to="/teacher/quiz" style={{ textDecoration: "none", color: "inherit" }}>
+    <div style={styles.card}>
+      <h3>Create Quiz</h3>
+      <p>Auto-graded quizzes for lessons.</p>
+    </div>
+  </Link>
 
-        <div style={styles.card}>
-          <h3>Grade Assignments</h3>
-          <p>Review and grade student submissions.</p>
-        </div>
-      </div>
+  <div style={styles.card}>
+    <h3>Grade Assignments</h3>
+    <p>Review and grade student submissions.</p>
+  </div>
+</div>
+
     </Layout>
   );
 }

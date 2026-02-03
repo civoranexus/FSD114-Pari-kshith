@@ -69,5 +69,19 @@ router.post("/submit/:quizId", protect, async (req,res)=>{
 
   res.json({ score, total: qs.rows.length });
 });
+// ✅ Get quiz attempt history (student)
+router.get("/attempts/me", protect, async (req, res) => {
+  const result = await pool.query(
+    `SELECT qa.id, qa.score, qa.attempted_at,
+            q.title as quiz_title
+     FROM quiz_attempts qa
+     JOIN quizzes q ON qa.quiz_id = q.id
+     WHERE qa.user_id = $1
+     ORDER BY qa.attempted_at DESC`,
+    [req.user.id]
+  );
+
+  res.json(result.rows);
+});
 
 export default router;

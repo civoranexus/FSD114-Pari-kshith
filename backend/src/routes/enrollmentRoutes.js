@@ -31,23 +31,45 @@ router.post(
   }
 );
 
-// Get student enrollments
 router.get(
   "/my",
   protect,
   allowRoles("student"),
   async (req, res) => {
     const result = await pool.query(
-      `SELECT c.id, c.title, p.progress_percent
-       FROM enrollments e
-       JOIN courses c ON c.id = e.course_id
-       JOIN progress p ON p.course_id = c.id
-       WHERE e.user_id = $1`,
+      `
+      SELECT 
+        c.id,
+        c.title,
+
+        COUNT(DISTINCT l.id) AS total_lessons,
+        COUNT(DISTINCT lc.lesson_id) AS completed_lessons,
+
+        CASE 
+          WHEN COUNT(DISTINCT l.id) = 0 THEN 0
+          ELSE ROUND(
+            COUNT(DISTINCT lc.lesson_id) * 100.0 /
+            COUNT(DISTINCT l.id)
+          )
+        END AS progress_percent
+
+      FROM enrollments e
+      JOIN courses c ON c.id = e.course_id
+      LEFT JOIN lessons l ON l.course_id = c.id
+      LEFT JOIN lesson_completion lc
+        ON lc.lesson_id = l.id
+        AND lc.user_id = e.user_id
+
+      WHERE e.user_id = $1
+      GROUP BY c.id
+      `,
       [req.user.id]
     );
+
     res.json(result.rows);
   }
 );
+
 
 // Update progress (simulated)
 router.put(
