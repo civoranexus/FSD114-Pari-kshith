@@ -12,6 +12,7 @@ import LessonViewer from "../LessonViewer";
 import CreateQuiz from "../teacher/CreateQuiz";
 import QuizResults from "../student/QuizResults";
 import Quiz from "../Quiz";
+import AdminAnalytics from "../AdminAnalytics";
 
 export default function AppRoutes() {
   return (
@@ -39,6 +40,7 @@ export default function AppRoutes() {
       <Route path="/teacher/quiz" element={<CreateQuiz />} />
       <Route path="/student/results" element={<QuizResults />} />
       <Route path="/quiz/:id" element={<Quiz />} />
+      <Route path="/admin-analytics" element={<AdminAnalytics />} />
 
       {/* ❗ MUST BE LAST */}
       <Route

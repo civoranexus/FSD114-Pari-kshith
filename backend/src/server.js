@@ -7,6 +7,9 @@ import courseRoutes from "./routes/courseRoutes.js";
 import enrollmentRoutes from "./routes/enrollmentRoutes.js";
 import lessonRoutes from "./routes/lessonRoutes.js";
 import quizRoutes from "./routes/quizRoutes.js";
+import progressRoutes from "./routes/progressRoutes.js";
+import certificateRoutes from "./routes/certificateRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 const app = express();
 const PORT = 5000;
 
@@ -18,6 +21,9 @@ app.use("/api/courses", courseRoutes);
 app.use("/api/enroll", enrollmentRoutes);
 app.use("/api/lessons", lessonRoutes);
 app.use("/api/quiz", quizRoutes);
+app.use("/api/progress", progressRoutes);
+app.use("/api/certificate", certificateRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Test route
 app.get("/", (req, res) => {

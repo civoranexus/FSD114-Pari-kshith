@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import Layout from "../components/Layout";
+import CourseProgress from "../components/CourseProgress";
+import { downloadCertificate } from "../services/certificateService";
 
 const courses = [
   {
@@ -40,7 +42,10 @@ export default function CourseDetails() {
       <p style={{ marginTop: "10px", color: "#555" }}>
         {course.description}
       </p>
-
+      <CourseProgress courseId={course.id} />
+      <button onClick={() => downloadCertificate(course.id)}>
+  Download Certificate
+</button>
       <button style={styles.btn}>Enroll (UI only)</button>
     </Layout>
   );
