@@ -24,8 +24,10 @@ export default function Login() {
   // ✅ Only store token if success
   localStorage.setItem("token", res.token);
   localStorage.setItem("role", res.user.role);
-
   setMsg("Login successful ✅");
+  localStorage.setItem("token",data.token);
+  localStorage.setItem("role", data.user.role);
+
 }
 
 

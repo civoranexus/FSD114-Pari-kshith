@@ -1,7 +1,8 @@
-const express = require("express");
+import express from "express";
+import db from "../db.js";
+import { protect } from "../middleware/authMiddleware.js";
+
 const router = express.Router();
-const db = require("../config/db");
-const auth = require("../middleware/authMiddleware");
 
 // admin role middleware
 function adminOnly(req, res, next) {
@@ -12,7 +13,7 @@ function adminOnly(req, res, next) {
 }
 
 // platform analytics
-router.get("/analytics", auth, adminOnly, async (req, res) => {
+router.get("/analytics", protect, adminOnly, async (req, res) => {
   try {
     const users = await db.query(
       "SELECT role, COUNT(*) FROM users GROUP BY role"
@@ -43,4 +44,4 @@ router.get("/analytics", auth, adminOnly, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

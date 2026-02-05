@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import LogoutButton from "./LogoutButton";
 
 export default function Navbar() {
   return (
@@ -22,6 +23,7 @@ export default function Navbar() {
         <Link style={styles.link} to="/dashboard">
           Dashboard
         </Link>
+        {localStorage.getItem("token") && <LogoutButton />}
       </div>
     </nav>
   );

@@ -1,25 +1,33 @@
 import { useEffect, useState } from "react";
-import Layout from "../components/Layout";
-import { getProtected } from "../services/authService";
+import { getStudentDashboard } from "../services/studentService";
 
 export default function Dashboard() {
-  const [data, setData] = useState(null);
+  const [courses, setCourses] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-
-    getProtected(token).then(setData);
+    load();
   }, []);
 
+  const load = async () => {
+    const data = await getStudentDashboard();
+    setCourses(data);
+  };
+
+  if (!courses) return <Loading />;
+  if (courses.length === 0)
+    return <h3>No enrollments yet</h3>;
+
   return (
-    <Layout>
-      <h2>Dashboard</h2>
-      {data ? (
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      ) : (
-        <p>Login to see protected data</p>
-      )}
-    </Layout>
+    <div>
+      <h2>My Courses</h2>
+
+      {courses.map(c => (
+        <div key={c.id} style={{ marginBottom: 12 }}>
+          <b>{c.title}</b><br/>
+          Category: {c.category}<br/>
+          Progress: {c.progress}%
+        </div>
+      ))}
+    </div>
   );
 }

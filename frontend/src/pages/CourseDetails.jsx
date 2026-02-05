@@ -1,65 +1,34 @@
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getCourseById } from "../services/courseService";
 import Layout from "../components/Layout";
-import CourseProgress from "../components/CourseProgress";
-import { downloadCertificate } from "../services/certificateService";
-
-const courses = [
-  {
-    id: 1,
-    title: "JavaScript Fundamentals",
-    description:
-      "This course covers JS basics like variables, loops, functions, and DOM.",
-  },
-  {
-    id: 2,
-    title: "React for Beginners",
-    description:
-      "Learn React fundamentals: components, props, state, and hooks.",
-  },
-  {
-    id: 3,
-    title: "Node.js Basics",
-    description:
-      "Understand Node.js, Express, and building REST APIs.",
-  },
-];
-
+import { enrollCourse } from "../services/studentService";
+import Loading from "../components/Loading";
+import { useNavigate } from "react-router-dom";
+import {apiSafe} from "../utils/apiSafe";
 export default function CourseDetails() {
   const { id } = useParams();
-  const course = courses.find((c) => c.id === Number(id));
+  const [course, setCourse] = useState(null);
+  const nav=useNavigate();
+  useEffect(() => {
+    load();
+  }, [id]);
 
-  if (!course) {
-    return (
-      <Layout>
-        <h2>Course not found ❌</h2>
-      </Layout>
-    );
-  }
+  const load = async () => {
+    const data = await getCourseById(id);
+    setCourse(data);
+  };
+
+  if (!course) return <Loading/>;
 
   return (
     <Layout>
       <h2>{course.title}</h2>
-      <p style={{ marginTop: "10px", color: "#555" }}>
-        {course.description}
-      </p>
-      <CourseProgress courseId={course.id} />
-      <button onClick={() => downloadCertificate(course.id)}>
-  Download Certificate
-</button>
-      <button style={styles.btn}>Enroll (UI only)</button>
+      <p>{course.description}</p>
+      <button onClick={async () => {
+    apiSafe(() => enrollCourse(course.id));
+    nav("/dashboard");
+  }}>Enroll</button>
     </Layout>
   );
 }
-
-const styles = {
-  btn: {
-    marginTop: "16px",
-    padding: "10px 14px",
-    borderRadius: "10px",
-    border: "none",
-    backgroundColor: "#111",
-    color: "#fff",
-    fontWeight: "700",
-    cursor: "pointer",
-  },
-};

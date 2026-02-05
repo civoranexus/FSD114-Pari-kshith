@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 export default function CourseCard({ course }) {
+  const navigate = useNavigate();
+
   return (
     <div style={styles.card}>
       <div style={styles.header}>
@@ -9,8 +13,12 @@ export default function CourseCard({ course }) {
       <p style={styles.desc}>{course.description}</p>
 
       <div style={styles.footer}>
-        <span style={styles.level}>Level: {course.level}</span>
-        <button style={styles.btn} type="button">
+      <span style={styles.level}> Category: {course.category} </span>
+        <button
+          style={styles.btn}
+          type="button"
+          onClick={() => navigate(`/courses/${course.id}`)}
+        >
           View Course
         </button>
       </div>

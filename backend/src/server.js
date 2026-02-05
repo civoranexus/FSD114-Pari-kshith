@@ -10,11 +10,22 @@ import quizRoutes from "./routes/quizRoutes.js";
 import progressRoutes from "./routes/progressRoutes.js";
 import certificateRoutes from "./routes/certificateRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import teacherRoutes from "./routes/teacherRoutes.js";
+import { notFound } from "./middleware/notFound.js";
+import { errorHandler } from "./middleware/errorHandler.js";
+import dotenv from "dotenv";
+import protectedRoutes from "./routes/protectedRoutes.js";
+import studentRoutes from "./routes/studentRoutes.js";
+
+dotenv.config();
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  credentials: true
+}));
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/courses", courseRoutes);
@@ -24,7 +35,11 @@ app.use("/api/quiz", quizRoutes);
 app.use("/api/progress", progressRoutes);
 app.use("/api/certificate", certificateRoutes);
 app.use("/api/admin", adminRoutes);
-
+app.use("/api/teacher", teacherRoutes);
+app.use("/api/protected", protectedRoutes);
+app.use("/api/student", studentRoutes);
+app.use(notFound);
+app.use(errorHandler);
 // Test route
 app.get("/", (req, res) => {
   res.json({
@@ -76,9 +91,15 @@ app.get(
     });
   }
 );
+app.get("/health", (req, res) => {
+  res.json({
+    status: "ok",
+    service: "EduVillage API"
+  });
+});
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
 

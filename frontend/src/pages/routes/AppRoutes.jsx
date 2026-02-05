@@ -13,7 +13,11 @@ import CreateQuiz from "../teacher/CreateQuiz";
 import QuizResults from "../student/QuizResults";
 import Quiz from "../Quiz";
 import AdminAnalytics from "../AdminAnalytics";
-
+import TeacherContent from "../TeacherContent";
+import ProtectedRoute from "../../components/ProtectedRoute";
+import RoleRoute from "../../components/RoleRoute";
+import ProtectedRoute from "../../components/ProtectedRoute";
+import RoleRoute from "../../components/RoleRoute";
 export default function AppRoutes() {
   return (
     <Routes>
@@ -23,7 +27,14 @@ export default function AppRoutes() {
       <Route path="/register" element={<Register />} />
 
       <Route path="/dashboard" element={<Dashboard />} />
-
+      <Route
+  path="/dashboard"
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
       {/* Role dashboards */}
       <Route path="/student" element={<StudentDashboard />} />
       <Route path="/teacher" element={<TeacherDashboard />} />
@@ -41,7 +52,27 @@ export default function AppRoutes() {
       <Route path="/student/results" element={<QuizResults />} />
       <Route path="/quiz/:id" element={<Quiz />} />
       <Route path="/admin-analytics" element={<AdminAnalytics />} />
-
+      <Route path="/teacher-content" element={<TeacherContent />} />
+      <Route
+  path="/teacher-content"
+  element={
+    <ProtectedRoute>
+      <RoleRoute role="teacher">
+        <TeacherContent />
+      </RoleRoute>
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/admin-analytics"
+  element={
+    <ProtectedRoute>
+      <RoleRoute role="admin">
+        <AdminAnalytics />
+      </RoleRoute>
+    </ProtectedRoute>
+  }
+/>
       {/* ❗ MUST BE LAST */}
       <Route
         path="*"
